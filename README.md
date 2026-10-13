@@ -39,9 +39,13 @@
 
 1. 打开 WorkBuddy，左侧【专家·技能·连接器】→ 选【连接器】页签；
 2. 右上角【自定义连接器】→【配置 MCP】；
-3. 粘贴本仓库 `mcp-config.example.json` 的内容，把 `${MCD_MCP_TOKEN}` 替换成你的真实 Token；
-4. 保存并【启用】`mcd-mcp`。
-   > 也可在系统环境变量中设置 `MCD_MCP_TOKEN`，配置里保留 `${MCD_MCP_TOKEN}` 占位（推荐，避免 Token 落盘）。
+3. 在 WorkBuddy 的配置框里填入你的真实 Token。两种安全做法二选一：
+
+   - **做法 A（推荐·最省心）**：直接在配置框的 `Authorization` 里写 `Bearer 你的真实Token`。这一步发生在你**本机 WorkBuddy**，不会进入 GitHub 仓库。
+   - **做法 B（环境变量·适合二次开发）**：系统设置环境变量 `MCD_MCP_TOKEN=你的真实Token`，配置里保留 `${MCD_MCP_TOKEN}` 占位符，WorkBuddy 会自动读取。
+
+   > ⚠️ **千万不要**编辑仓库里的 `mcp-config.example.json`、把占位符改成真实 Token 后提交/推送——那是公开仓库，任何人都能直接看到，且 git 历史无法彻底删除，等同于把账号凭证公开！
+   > ⚠️ 也**不要**在仓库目录里放一份写有真实 Token 的 `mcp-config.json` 再运行发布脚本（脚本只上传白名单内的规定文件，但仍请保持真实配置在仓库目录之外）。
 
 ### 2.3 安装本 Skill
 
